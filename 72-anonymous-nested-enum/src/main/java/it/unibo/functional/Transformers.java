@@ -54,7 +54,11 @@ public final class Transformers {
      * @param <O> output elements type
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
-        return null;
+        final List<O> result = new ArrayList<>();
+        for (final I input : Objects.requireNonNull(base, "The base iterable cannot be null")) {
+            result.add(transformer.call(input));
+        }
+        return result;
     }
 
     /**
@@ -70,7 +74,11 @@ public final class Transformers {
      * @param <I> type of the collection elements
      */
     public static <I> List<? extends I> flatten(final Iterable<? extends Collection<? extends I>> base) {
-        return null;
+        final var result = new ArrayList<I>();
+        for (final Collection<? extends I> input : Objects.requireNonNull(base, "The base iterable cannot be null")) {
+            result.addAll(input);
+        }
+        return result;
     }
 
     /**
@@ -87,7 +95,13 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> select(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        final var result = new ArrayList<I>();
+        for (final I input : Objects.requireNonNull(base, "The base iterable cannot be null")) {
+            if (test.call(input)) {
+                result.add(input);  
+            }
+        }
+        return result;
     }
 
     /**
@@ -103,6 +117,12 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> reject(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        final var result = new ArrayList<I>();
+        for (final I input : Objects.requireNonNull(base, "The base iterable cannot be null")) {
+            if (!test.call(input)) {
+                result.add(input);  
+            }
+        }
+        return result;
     }
 }
