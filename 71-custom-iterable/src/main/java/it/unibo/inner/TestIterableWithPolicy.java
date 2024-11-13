@@ -15,11 +15,11 @@ public class TestIterableWithPolicy {
     private TestIterableWithPolicy() {}
 
     private static <T> IterableWithPolicy<T> makeIterableWithPolicy(final T[] elements, final Predicate<T> filter) {
-        return null; // TODO: return the implementation of IterableWithPolicy
+        return new IterableWithPolicyImpl<>(elements, filter); // TODO: return the implementation of IterableWithPolicy
     }
 
     private static <T> IterableWithPolicy<T> makeIterableWithPolicy(final T[] elements) {
-        return null; // TODO: return the implementation of IterableWithPolicy
+        return new IterableWithPolicyImpl<>(elements); // TODO: return the implementation of IterableWithPolicy
     }
 
     public static void main(final String[] args) {
